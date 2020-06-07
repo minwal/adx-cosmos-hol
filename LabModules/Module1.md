@@ -11,8 +11,8 @@ Note down the keys, connection strings to be used in the next modules. Follow be
 
 3. Enter details as shown below to create Cosmos DB account.
 
-  ***Note*** - 
-  New resource group 'nrta-lab-rg' created in this step will be used while creating other resources. Navigating to resource               creation screen and search for different resources for creation is going to be same for all resources, just different resource names     so I wont be repeating these screenshots in next modules. 
+  ### NOTE - 
+  New resource group **'nrta-lab-rg'** created in this step will be used while creating other resources. Navigating to resource creation screen and search for different resources for creation is going to be same for all resources, just different resource names so I wont be repeating these screenshots in next modules. 
   
   ![](../images/CreateCosmos.png)
 
