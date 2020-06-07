@@ -9,12 +9,11 @@ Note down the keys, connection strings to be used in the next modules. Follow be
 ![](../images/SelectCosmos.png)
 
 
-3. Enter details as shown below to create Cosmos DB account.
+3. Enter details as shown below to create Cosmos DB account. 
+![](../images/CreateCosmos.png)
 
-  ### NOTE - 
-  New resource group **'nrta-lab-rg'** created in this step will be used while creating other resources. Navigating to resource creation screen and search for different resources for creation is going to be same for all resources, just different resource names so I wont be repeating these screenshots in next modules. 
-  
-  ![](../images/CreateCosmos.png)
+### NOTE - 
+New resource group **'nrta-lab-rg'** created in this step will be used while creating other resources. Navigating to resource creation screen and search for different resources for creation is going to be same for all resources, just different resource names so I wont be repeating these screenshots in next modules. 
 
 4. Click 'Next' with all default settings for 'Networking', 'Encryption' and 'Tags' tabs.
 
