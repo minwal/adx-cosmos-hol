@@ -10,9 +10,9 @@ The focus of this lab is to demonstrate how to use Cosmos DB as a transactional 
 ![](images/RefArch.jpg)
 
 ## Key advantages of this architecture
+ - Transactional data is readily available for analytics so you can query data in near real time as opposed to waiting for days to get the data.
  - You can query data without impacting the OLTP system.
- - You can query data in near real time as opposed to waiting for days to get the data.
- - Both transactional and analytical queries will perform much better.
+ - Drill down from analytic aggregates always point to fresh data.
 
 ## Brief on each of the components in this lab -
 1. **Data Generation component** - This will simulate random data for this lab. Its a simple .Net program to generate sample data simulating ecommerce website's shopping cart information. Here is an example of one record of sample data -
@@ -24,7 +24,7 @@ The focus of this lab is to demonstrate how to use Cosmos DB as a transactional 
     "Price": 81.99
   }
   ```
- 2. **Cosmos DB** - Cosmos DB will be used as a transactional store which will store generated data in a collection.
+ 2. **Cosmos DB** - Cosmos DB will be used as an operational store which will store simulated generated data in a collection.
  3. **Change Feed** - The change feed will listen for changes to the Cosmos DB collection e.g. on an ecommerce website, whenever user views an item, adds an item to their cart, purchases an item etc will add a new document in Cosmos DB collection. For simplicity sake, lab is covering addition of new documents scenario only so every time a new document is added into the collection , the change feed will trigger an Azure Function.
 Change Feed can be processed in push or pull model. Key difference in both models is who stores state for the last processed changes, its server in push model and client in case of pull model. I will be covering push model with natively supported Azure Functions Cosmos DB triggers in this lab, its the recommended approach due to following -
   - Polling the change feed for future changes.
@@ -46,11 +46,18 @@ For more details, refer to this [documentation](https://azure.microsoft.com/en-a
  - Basic knowledge on Azure portal
 
 ## Lets get started
-[Module 1 - Provision Cosmos DB account, Database and container](https://github.com/minwal/cosmos-adx-int/blob/minwal-patch-1/LabModules/Module1.md)
-Module 2 - Create Azure Function
-Module 3 - Create Azure Event Hub
-Module 4 - Provision Azure Data Explorer cluster
-Module 5 - Run Data Generator component
-Module 6 - Run Cosmos DB Change Feed Function
+[Module 1 - Create Cosmos DB account, database and container](https://github.com/minwal/cosmos-adx-int/blob/minwal-patch-1/LabModules/Module1.md)
+
+[Module 2 - Create Storage account](https://github.com/minwal/cosmos-adx-int/blob/minwal-patch-1/LabModules/Module2.md)
+
+[Module 3 - Create Azure Event Hub](https://github.com/minwal/cosmos-adx-int/blob/minwal-patch-1/LabModules/Module3.md)
+
+[Module 4 - Create and run Azure function to be triggered by Cosmos DB Change feed](https://github.com/minwal/cosmos-adx-int/blob/minwal-patch-1/LabModules/Module4.md)
+
+[Module 5 - Create Azure Data Explorer](https://github.com/minwal/cosmos-adx-int/blob/minwal-patch-1/LabModules/Module5.md)
+
+[Module 6 - Set up data simulator to feed data into Cosmos DB](https://github.com/minwal/cosmos-adx-int/blob/minwal-patch-1/LabModules/Module5.md)
+
+[Module 7 - Explore and Visualize data in near real time in Azure Data Explorer](https://github.com/minwal/cosmos-adx-int/blob/minwal-patch-1/LabModules/Module7.md)
 
 
