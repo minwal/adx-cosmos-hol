@@ -21,7 +21,7 @@ To make it easy and cost effective for lab purpose, I have used VS way so you ca
     
     "FUNCTIONS_WORKER_RUNTIME": "dotnet"
   }
-  ```  <br>
+  ```  
  
   4. Open 'NrtaChangeFeedProcessor.cs' file, change the Cosmos DB and container name in the parameters of the **Run** method. 
   This change is needed only if you didnt follow the same names as in previous modules of labs.
