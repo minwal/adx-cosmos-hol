@@ -3,9 +3,9 @@ In this module, we will create storage account that will be used by Azure functi
 
 #### NOTE - Intent of this whole lab is to demonstrate how easy it is to connect Cosmos DB with ADX to build HTAP solution. So I am using default settings wherever possible with lowest possible SKUs for all services to keep cost under control. 
 
-1. Navigate to 'Create a resource' as shown in Step1 of Module1.
+1. On azure portal, navigate to 'Create a resource' option as shown in Step1 of Module1.
 
-2. Search for 'Storage account - blob, file, table, queue' and select, click 'Create'
+2. Search for 'Storage account - blob, file, table, queue', select an option as shown below and click 'Create'
 ![](../images/StorageAcc1.png)
 
 3. Enter details as shown below and make sure you select the resource group created in Module 1.
