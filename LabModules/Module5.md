@@ -17,9 +17,28 @@ ADX is a fully-managed big data analytics and data exploration service on azure.
 ![](../images/ADX6.png)
 8. Fill in the details as shown below
 ![](../images/ADX7.png)
+<br>
+9. Create table in ADX
+```
+.create table NrtaLabTable (ShoppingCartID: int, Action: string, Item: string, Price:real, UniqueID:guid, Timestamp: datetime)
+```
+
+10. Create corresponding table mapping for the table columns mapping to the fields in JSON document
+```
+.create table NrtaLabTable ingestion json mapping 'NrtaLabTable_mapping' '[{"column":"ShoppingCartID","path":"$.ShoppingCartID","datatype":"int"},{"column":"Action","path":"$.Action","datatype":"string"},{"column":"Item","path":"$.Item","datatype":"string"},{"column":"Price","path":"$.Price","datatype":"real"},{"column":"UniqueID","path":"$.id","datatype":"guid"},{"column":"Timestamp","path":"$._ts","datatype":"datetime"}]'
+```
+### NOTE -
+You can also use [one-click ingestion](https://docs.microsoft.com/en-us/azure/data-explorer/ingest-data-one-click) feature to ingest one of the sample document which will automatically create above mentioned table and table mapping for you. Also, you can copy commands from one-click ingestion as shown below -
+![](../images/OneClickIngestion1.png)
+<br>
+**Click on 'Edit Schema'**
+![](../images/OneClickIngestion2.png)
+<br>
+
 9. Now create data connection
 ![](../images/ADX8.png)
 10 Select Event Hub
 ![](../images/ADX9.png)
+<br>
 11 Fill in the details as shown below
 ![](../images/ADX10.png)
