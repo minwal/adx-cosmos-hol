@@ -21,6 +21,7 @@ ADX is a fully-managed big data analytics and data exploration service on azure.
 9. Create table in ADX
 ```
 .create table NrtaLabTable (ShoppingCartID: int, Action: string, Item: string, Price:real, UniqueID:guid, Timestamp: datetime)
+
 ```
 
 10. Create corresponding table mapping for the table columns mapping to the fields in JSON document
@@ -35,11 +36,13 @@ You can also use [one-click ingestion](https://docs.microsoft.com/en-us/azure/da
 ![](../images/OneClickIngestion2.png)
 <br/>
 
-9. Now create ADX data connection to the ingestion service which is event hub in this case
+11. Now create ADX data connection to the ingestion service which is event hub in this case
 ![](../images/ADX8.png)
-<br>
-10 Select Event Hub
+<br/>
+
+12. Select Event Hub
 ![](../images/ADX9.png)
-<br>
-11 Fill in the details as shown below
+<br/>
+
+13. Fill in the details as shown below and thats all about ADX cluster creation and connection building with event hub.
 ![](../images/ADX10.png)
