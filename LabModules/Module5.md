@@ -17,13 +17,11 @@ ADX is a fully-managed big data analytics and data exploration service on azure.
 ![](../images/ADX6.png)
 8. Fill in the details as shown below
 ![](../images/ADX7.png)
-<br>
+
 9. Create table in ADX
 ```
 .create table NrtaLabTable (ShoppingCartID: int, Action: string, Item: string, Price:real, UniqueID:guid, Timestamp: datetime)
-
 ```
-
 10. Create corresponding table mapping for the table columns mapping to the fields in JSON document
 ```
 .create table NrtaLabTable ingestion json mapping 'NrtaLabTable_mapping' '[{"column":"ShoppingCartID","path":"$.ShoppingCartID","datatype":"int"},{"column":"Action","path":"$.Action","datatype":"string"},{"column":"Item","path":"$.Item","datatype":"string"},{"column":"Price","path":"$.Price","datatype":"real"},{"column":"UniqueID","path":"$.id","datatype":"guid"},{"column":"Timestamp","path":"$._ts","datatype":"datetime"}]'
