@@ -30,13 +30,14 @@ ADX is a fully-managed big data analytics and data exploration service on azure.
 ### NOTE -
 You can also use [one-click ingestion](https://docs.microsoft.com/en-us/azure/data-explorer/ingest-data-one-click) feature to ingest one of the sample document which will automatically create above mentioned table and table mapping for you. Also, you can copy commands from one-click ingestion as shown below -
 ![](../images/OneClickIngestion1.png)
-<br>
+<br/>
 **Click on 'Edit Schema'**
 ![](../images/OneClickIngestion2.png)
-<br>
+<br/>
 
-9. Now create data connection
+9. Now create ADX data connection to the ingestion service which is event hub in this case
 ![](../images/ADX8.png)
+<br>
 10 Select Event Hub
 ![](../images/ADX9.png)
 <br>
