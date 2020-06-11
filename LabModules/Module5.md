@@ -13,9 +13,10 @@ ADX is a fully-managed big data analytics and data exploration service on azure.
 ![](../images/ADX4.png)
 6. Select Next with default values for 'Security', 'Network' and 'Tags' tabs then click 'Create' on the last screen for creation flow as shown below
 ![](../images/ADX5.png)
-<br/>
+
 7. Add database in the ADX cluster
 ![](../images/ADX6.png)
+
 8. Fill in the details as shown below and click 'Create'
 ![](../images/ADX7.png)
 
