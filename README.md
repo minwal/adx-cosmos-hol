@@ -1,6 +1,6 @@
-# Build near real time analytical solution with Cosmos DB and Azure Data Explorer(ADX)
+# Build large scale near real-time analytical solution with Azure Data Explorer
 
-**In this hands on lab you will learn about how easy it is to connect Cosmos DB to Azure Data Explorer for building a near real time big data analytical solution. Few other azure services have been leveraged to build an end to end solution so you don't need to worry about demistifying parts of it.**
+**In this hands on lab you will learn how easy it is to connect Azure Cosmos DB to Azure Data Explorer for building a near real-time big data analytical solution. Few other azure services have been leveraged to build an end to end solution so you don't need to worry about demistifying parts of it.**
 
 ## **NOTE**
 There are multiple ways to build analytical solutions using different azure services, this is one of those different ways and by no means, this is THE only way. Similar outcomes can be achieved using other azure services which are not covered in this lab.
