@@ -75,10 +75,7 @@ You can also use Kusto explorer which is a desktop edition similar to the Web UI
   5. Paste any of the KQL queries that were created in Step 3 of 'Sample KQL Queries' above section. Run query and add visuals as needed.
   ![](../images/Dashboard5.png)
 
-
   6. Repeat above Step 4 and 5 to add rest of the sample queries on dashboard. You can drag and drop, resize visuals as needed. Finally you will see a dashboard like the one shown below, thats it. So simple and easy!
-  
-  
   ![](../images/Dashboard.png)
 
 
