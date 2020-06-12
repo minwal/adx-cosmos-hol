@@ -9,7 +9,7 @@ Analytical solutions can be built in mutiple ways using different azure services
 The idea behind near real-time analytical solution is to provide the ability to analyze data without impacting the OLTP system. To understand its value proposition for business growth, let us take few examples - ability to provide promotions in ecommerce system as soon as user checks out, identify customer behaviour trends, fraudulent activities, monitoring in manufacturing industry to prevent negative consequences etc are all such scenarios which are possible with this solution.<br>
 With ADX, you get the ability to query fast-flowing data without having to wait until the data is ingested into a data warehouse, but at the same time without affecting the OLTP system's performance.
 
-In this lab you will build the solution architecture as shown below. You will simulate and insert the transactions from an ecommerce system to Cosmos DB. Push every change in near real-time to ADX using Azure functions triggered by Cosmos DB change feed and event hub. Idea is to use Cosmos DB as an opeartional hot store, ADX as an analytical warm store and Azure storage as a cold store e.g. Cosmos DB can store data for a day or so, ADX can store it for 1-2 years, anything beyond that is not queried frequently can be stored on azure storage. 
+In this lab you will build the solution architecture as shown below. You will simulate and insert the transactions from an ecommerce system to Cosmos DB. Push every change in near real-time to ADX using Azure functions triggered by Cosmos DB change feed and event hub. Idea is to use Cosmos DB as an opeartional hot store, ADX as an analytical warm store and Azure storage as a cold store.
 ![](images/RefArch.png)
 
 ## Key advantages of this architecture
