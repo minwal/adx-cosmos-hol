@@ -1,48 +1,45 @@
-# Build large scale near real-time analytical solution with Azure Data Explorer
+# Build near real-time analytical solution with Azure Data Explorer
 
-**In this hands on lab you will learn how easy it is to connect Azure Cosmos DB to Azure Data Explorer for building a near real-time big data analytical solution. Few other azure services have been leveraged to build an end to end solution so you don't need to worry about demistifying parts of it.**
+**In this hands on lab you will learn about the power of near real-time analytical solution and how easy it is to build one using Azure Data Explorer(ADX) and Azure Cosmos DB.**
 
-## **NOTE**
-There are multiple ways to build analytical solutions using different azure services, this is one of those different ways and by no means, this is THE only way. Similar outcomes can be achieved using other azure services which are not covered in this lab.
+## NOTE
+Analytical solutions can be built in mutiple ways using different azure services, this lab describes one of the possible scenarios. Similar outcomes can be achieved using other azure services which are not covered in this lab.
 
 ## Overview
-The focus of this lab is to demonstrate how to use Cosmos DB as an operational and transactional store, and ADX as an analytical store, think of it like a polyglot persistence concept where it is best to use multiple technologies to store data based on the way data is being used by applications and components in the overall ecosystem. Its hard for one service to kill all the scenarios so let us utilize the strengths of both these services(Cosmos & ADX) to build a powerful real time analytical solution e.g. Cosmos DB is meant for building highly responsive distributed applications with its ability for point reads and look ups whereas ADX is extremely powerful for large scans, aggregations on the fly, time series analysis and machine learning scenarios. So lets connect these two platforms to build following reference architecture -
+Near real-time analysis provides the ability to analyze data without impacting the OLTP system. Few examples to understand its value proposition for business growth like promotions in ecommerce system as soon as user checks out, identify customer behaviour trends, fraudulent activities, response to promotions etc.<br>
+With ADX, you get the ability to query fast-flowing data without having to wait until the data is ingested into a data warehouse, but at the same time without affecting the OLTP system's performance.
+
+In this lab you will build the solution architecture as shown below where you will simulate and insert the transactions from an ecommerce system to Cosmos DB. Push every change in near real-time to ADX using Azure functions triggered by Cosmos DB change feed and event hub. Idea is to use Cosmos DB as an opeartional hot store, ADX as an analytical warm store and Azure storage as a cold store for archival or long term storage purposes. This architecture focuses on the below shown solution only to build a sample but it can be changed depending on requirements, for example, to push data from ADX to DW for enriching the data with historical data from other sources, modelling and reporting purposes.
 ![](images/RefArch.png)
 
 ## Key advantages of this architecture
- - Transactional data is readily available for analytics so you can query data in near real time as opposed to waiting for days to get the data.
- - You can query data without impacting the OLTP system.
+ - Transactional data is readily available for analysis so you can query data in near real-time as opposed to waiting for days to get the data.
+ - You can query data without impacting the OLTP system's performance.
  - Drill down from analytic aggregates always point to fresh data.
 
 ## Brief on each of the components in this lab -
-1. **Data Generation component** - This will simulate random data for this lab. Its a simple .Net program to generate sample data simulating ecommerce website's shopping cart information. Here is an example of one record of sample data -
-  ```
-  {      
-    "ShoppingCartID": 2956,
-    "Action": "Purchased",
-    "Item": "Unisex Puffy Jacket",
-    "Price": 81.99
-  }
-  ```
- 2. **Cosmos DB** - Cosmos DB will be used as an operational store which will store simulated generated data in a collection.
- 3. **Change Feed** - The change feed will listen for changes to the Cosmos DB collection e.g. on an ecommerce website, whenever user views an item, adds an item to their cart, purchases an item etc will add a new document in Cosmos DB collection. For simplicity sake, lab is covering addition of new documents scenario only so every time a new document is added into the collection , the change feed will trigger an Azure Function.
-Change Feed can be processed in push or pull model. Key difference in both models is who stores state for the last processed changes, its server in push model and client in case of pull model. I will be covering push model with natively supported Azure Functions Cosmos DB triggers in this lab, its the recommended approach due to following -
-    - Polling the change feed for future changes.
+1. **Data Generation component** - This will simulate random data for this lab. Its a simple .Net program to generate sample data simulating ecommerce website's events to view items, add items to shopping cart, purchase items. 
+ 2. **Cosmos DB** - It is an operational and transactional system which will store simulated data in a collection.
+ 3. **Change Feed** - The change feed will listen for changes to the Cosmos DB collection e.g. on an ecommerce website, whenever user views an item, adds an item to their cart, purchases an item etc will lead to a change in Cosmos DB collection which will trigger an azure function.
+Change Feed is just like DB logs in relational world. It can be processed in push or pull model. I will be covering push model as its the recommended approach due to its ability to -
+    - Poll the change feed for future changes.
     - Storing state for the last processed change. 
     - Load balancing across multiple clients consuming changes. 
     - Retrying failed changes that weren't correctly processed after an unhandled exception in code or a transient network issue.
-4. **Azure Function** - The Azure Function will process the new data and send it to an Azure Event Hub.
-5. **Event Hub** - The Azure Event Hub will store these events and send them to Azure Data Explorer.
-6. **Azure Data Explorer(ADX)** - ADX will be used as an analytical store which will provide the ability to analyze data at a blazingly fast pace. Why ADX -
-    - You can ingest fast flowing high volumes of data with low latency in streaming or batch mode. Its an append only database so primarily meant for time series analysis, logs(could be from apps, CDN logs, user activity or any kind of logs generated by the enterprise systems).
-    - You can transform data. 
-    - You can do interactive analytics for exploration purposes in one of the most performant and cost efficient manner, write queries using KQL(Kusto Query Language), T-SQL, Python, R.
+4. **Azure Function** - It will process every change in Cosmos DB, send it to an azure event hub.
+5. **Event Hub** - It is an event ingestion service which will receive events from azure function and send them to ADX.
+6. **Azure Data Explorer(ADX)** - It is an analytical store which will provide the ability to analyze streaming data at a lightning speed. Why ADX -
+    - ADX supports ingestions for fast flowing high volumes of data with low latency in streaming or batch mode. 
+    - ADX supports structured, semistructured(JSON and XML) and unstructured(free text) data. It has a rich set of capabilities for time series analysis, log analysis(trace logs, user activity logs, CDN logs or any kind of events generated by the enterprise systems), user analytics and geospatial features. 
+    - ADX automatically indexes and compresses data on ingestion and stores it in an append only columnar database.
+    - You can do interactive analytics for exploration purposes in one of the most performant and cost efficient manner, write queries using KQL(Kusto Query Language) and T-SQL. It supports in-line R and Python for building ML models.
 For more details, refer to this [documentation](https://azure.microsoft.com/en-au/services/data-explorer/#features).
 
 ## Prerequisites
  - Microsoft Azure Subscription with contributor or admin level access
  - Microsoft .NET Framework 4.7 or higher
- - Use either Edge or Chrome when executing the labs. IE may have issues when rendering the UI for specific Azure services.
+ - Visual Studio 2017 or higher
+ - Use either Edge or Chrome when executing the labs. IE may have issues when rendering the UI for specific Azure services
  - Basic knowledge on Azure portal
 
 ## Lets get started
