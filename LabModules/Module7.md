@@ -1,5 +1,5 @@
 ## Explore, Analyze and Visualize data using ADX 
-In this module, you will learn about how easy it is to explore, analyze and visualize data using ADX. You will also build a simple dashboard with few sample queries using ADX Dashboards. You can also use other visualization tools like Power BI or Grafana depending on your requirements. 
+In this module, you will learn about how easy it is to explore, analyze and visualize data using ADX. You will also learn how to build a simple dashboard with few sample queries using ADX Dashboards. ADX Dashboards is a feature of ADX which can be accessed from ADX Web UI. You can also use other visualization tools like Power BI or Grafana depending on your requirements. 
 I am using ADX dashboards due to following reasons -
    - Easy to use with ADX as source
    - Leverage data exploration KQL(Kusto Query Language) queries as it is to build dashboards
@@ -74,5 +74,8 @@ You can also use Kusto explorer which is a desktop edition similar to the Web UI
   ![](../images/Dashboard4.png)
   5. Paste any of the KQL queries that were created in Step 3 of 'Sample KQL Queries' above section. Run query and add visuals as needed.
   ![](../images/Dashboard5.png)
-  6. Repeat above Step 4 and 5 to add rest of the sample queries on dashboard. You can resize visuals, drag and drop them as needed. Finally you will see a dashboard like this, thats it. Simple and Easy!
+  <br>
+  6. Repeat above Step 4 and 5 to add rest of the sample queries on dashboard. You can drag and drop, resize visuals as needed. Finally you will see a dashboard like the one shown below, thats it. So simple and easy!
+  <br>
   ![](../images/Dashboard.png)
+  <br>
