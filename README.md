@@ -34,7 +34,8 @@ Change Feed is similar to database logs in relational world. It can be processed
     - ADX automatically indexes and compresses data on ingestion and stores it in an append only columnar database.
     - ADX provides interactive analytical capabilities in one of the most performant and cost efficient manner. It supports KQL(Kusto Query Language), T-SQL, inline R and Python for building ML models.
     - ADX provides the ability to build easy, quick, performant and no cost dashboards.
-For more details, refer to this [documentation](https://azure.microsoft.com/en-au/services/data-explorer/#features).
+
+For more details on ADX, refer to this [documentation](https://azure.microsoft.com/en-au/services/data-explorer/#features).
 
 ## Prerequisites
  - Microsoft Azure Subscription with contributor or admin level access
