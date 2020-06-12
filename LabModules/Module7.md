@@ -1,5 +1,5 @@
-## Explore, Analyze and Visualize data using ADX 
-In this module, you will learn about how easy it is to explore, analyze and visualize data using ADX. You will also learn how to build a simple dashboard with few sample queries using ADX Dashboards. ADX Dashboards is a feature of ADX which can be accessed from ADX Web UI. You can also use other visualization tools like Power BI or Grafana depending on your requirements. 
+## Explore, Analyze and Visualize data in near real-time using ADX 
+In this module you will learn about how easy it is to explore, analyze and visualize data using ADX. You will also learn how to build a near real-time dashboard with few sample queries using ADX Dashboards. ADX Dashboards is a feature of ADX which can be accessed from ADX Web UI. You can also use other visualization tools like Power BI or Grafana depending on your requirements. 
 I am using ADX dashboards due to following reasons -
    - Easy to use with ADX as source
    - Leverage data exploration KQL(Kusto Query Language) queries as it is to build dashboards
