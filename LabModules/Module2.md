@@ -1,7 +1,6 @@
 ## Create storage account
 In this module, you will create Azure storage account that will be used by Azure function to store data. Azure function gets triggered whenever there will be any change in Cosmos DB collection created as part of Module 1.
 
-#### NOTE - Intent of this whole lab is to demonstrate how easy it is to connect Cosmos DB with ADX. So I am using default settings wherever possible with lowest possible SKUs for all services to keep cost of lab under control. 
 
 1. On azure portal, navigate to 'Create a resource' option as shown in Step1 of Module1.
 
