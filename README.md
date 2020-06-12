@@ -6,10 +6,10 @@
 Analytical solutions can be built in mutiple ways using different azure services, this lab describes one of the possible scenarios. Similar outcomes can be achieved using other azure services which are not covered in this lab.
 
 ## Overview
-Near real-time analysis provides the ability to analyze data without impacting the OLTP system. Few examples to understand its value proposition for business growth like promotions in ecommerce system as soon as user checks out, identify customer behaviour trends, fraudulent activities, response to promotions etc.<br>
+The idea behind near real-time analytical solution is to provide the ability to analyze data without impacting the OLTP system. To understand its value proposition for business growth, let us take few examples - ability to provide promotions in ecommerce system as soon as user checks out, identify customer behaviour trends, fraudulent activities, monitoring in manufacturing industry to prevent negative consequences etc are all such scenarios which are possible with this solution.<br>
 With ADX, you get the ability to query fast-flowing data without having to wait until the data is ingested into a data warehouse, but at the same time without affecting the OLTP system's performance.
 
-In this lab you will build the solution architecture as shown below where you will simulate and insert the transactions from an ecommerce system to Cosmos DB. Push every change in near real-time to ADX using Azure functions triggered by Cosmos DB change feed and event hub. Idea is to use Cosmos DB as an opeartional hot store, ADX as an analytical warm store and Azure storage as a cold store for archival or long term storage purposes. This architecture focuses on the below shown solution only to build a sample but it can be changed depending on requirements, for example, to push data from ADX to DW for enriching the data with historical data from other sources, modelling and reporting purposes.
+In this lab you will build the solution architecture as shown below. You will simulate and insert the transactions from an ecommerce system to Cosmos DB. Push every change in near real-time to ADX using Azure functions triggered by Cosmos DB change feed and event hub. Idea is to use Cosmos DB as an opeartional hot store, ADX as an analytical warm store and Azure storage as a cold store e.g. Cosmos DB can store data for a day or so, ADX can store it for 1-2 years, anything beyond that is not queried frequently can be stored on azure storage. 
 ![](images/RefArch.png)
 
 ## Key advantages of this architecture
@@ -18,28 +18,28 @@ In this lab you will build the solution architecture as shown below where you wi
  - Drill down from analytic aggregates always point to fresh data.
 
 ## Brief on each of the components in this lab -
-1. **Data Generation component** - This will simulate random data for this lab. Its a simple .Net program to generate sample data simulating ecommerce website's events to view items, add items to shopping cart, purchase items. 
- 2. **Cosmos DB** - It is an operational and transactional system which will store simulated data in a collection.
- 3. **Change Feed** - The change feed will listen for changes to the Cosmos DB collection e.g. on an ecommerce website, whenever user views an item, adds an item to their cart, purchases an item etc will lead to a change in Cosmos DB collection which will trigger an azure function.
-Change Feed is just like DB logs in relational world. It can be processed in push or pull model. I will be covering push model as its the recommended approach due to its ability to -
-    - Poll the change feed for future changes.
-    - Storing state for the last processed change. 
-    - Load balancing across multiple clients consuming changes. 
+1. **Data Generation component** - This will simulate random data for the lab. Its a simple .NET program to generate sample data simulating ecommerce website's shopping events including viewing of items, adding items to a shopping cart, purchase items. 
+ 2. **Cosmos DB** - It is an operational and transactional system which will store simulated data in a Cosmos DB collection.
+ 3. **Change Feed** - The change feed will listen for changes to the Cosmos DB collection e.g. on an ecommerce website, whenever user views an item, adds an item to their cart or purchases an item, it will lead to a change in Cosmos DB collection which will trigger an Azure Function.
+Change Feed is similar to database logs in relational world. It can be processed in push or pull model. I will be covering push model as its the recommended approach due to its ability to -
+    - Poll the change feed for future changes
+    - Store state for the last processed change
+    - Load balance across multiple clients consuming changes. 
     - Retrying failed changes that weren't correctly processed after an unhandled exception in code or a transient network issue.
-4. **Azure Function** - It will process every change in Cosmos DB, send it to an azure event hub.
-5. **Event Hub** - It is an event ingestion service which will receive events from azure function and send them to ADX.
-6. **Azure Data Explorer(ADX)** - It is an analytical store which will provide the ability to analyze streaming data at a lightning speed. Why ADX -
+4. **Azure Function** - It is a serverless way to run event triggered code. In this case, it will process every change in Cosmos DB and  send it to an Azure Event Hub.
+5. **Event Hub** - It is an event ingestion service which will receive events from Azure Function and send them to ADX.
+6. **Azure Data Explorer(ADX)** - It is a big data analytical platform which will provide the ability to analyze streaming data at a lightning speed. Brief on ADX -
     - ADX supports ingestions for fast flowing high volumes of data with low latency in streaming or batch mode. 
-    - ADX supports structured, semistructured(JSON and XML) and unstructured(free text) data. It has a rich set of capabilities for time series analysis, log analysis(trace logs, user activity logs, CDN logs or any kind of events generated by the enterprise systems), user analytics and geospatial features. 
+    - ADX supports structured, semistructured(JSON and XML) and unstructured(free text) data. It has a rich set of capabilities for time series analysis, user analytics, geospatial and log analytics capabilities(trace logs, user activity logs, CDN logs or any kind of activities generated by the enterprise systems). 
     - ADX automatically indexes and compresses data on ingestion and stores it in an append only columnar database.
-    - You can do interactive analytics for exploration purposes in one of the most performant and cost efficient manner, write queries using KQL(Kusto Query Language) and T-SQL. It supports in-line R and Python for building ML models.
+    - ADX provides interactive analytical capabilities in one of the most performant and cost efficient manner. It supports KQL(Kusto Query Language), T-SQL, inline R and Python for building ML models.
 For more details, refer to this [documentation](https://azure.microsoft.com/en-au/services/data-explorer/#features).
 
 ## Prerequisites
  - Microsoft Azure Subscription with contributor or admin level access
  - Microsoft .NET Framework 4.7 or higher
- - Visual Studio 2017 or higher
- - Use either Edge or Chrome when executing the labs. IE may have issues when rendering the UI for specific Azure services
+ - VS Code or Visual Studio 2017 or higher
+ - Use either Edge or Chrome when executing the labs. Internet Explorer may have issues when rendering the UI for specific Azure services
  - Basic knowledge on Azure portal
 
 ## Lets get started
