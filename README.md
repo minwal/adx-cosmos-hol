@@ -1,6 +1,6 @@
-# Build near real-time analytical solution with Azure Data Explorer
+# Integrating CosmosDB and Azure Data Explorer to build near real-time analysis solution
 
-**In this hands on lab you will learn about the power of near real-time analytical solution and how easy it is to build one using Azure Data Explorer(ADX) and Azure Cosmos DB.**
+**In this hands on lab you will learn about the power of near real-time analytical solution and how easy it is to build one using Azure Cosmos DB and Azure Data Explorer(ADX).**
 
 ## NOTE
 Analytical solutions can be built in mutiple ways using different azure services, this lab describes one of the possible scenarios. Similar outcomes can be achieved using other azure services which are not covered in this lab.
@@ -9,7 +9,7 @@ Analytical solutions can be built in mutiple ways using different azure services
 The idea behind near real-time analytical solution is to provide the ability to analyze data without impacting the OLTP system. To understand its value proposition for business growth, let us take few examples - ability to provide promotions in ecommerce system as soon as user checks out, identify customer behaviour trends, fraudulent activities, monitoring in manufacturing industry to prevent negative consequences etc are all such scenarios which are possible with this solution.<br>
 With ADX, you get the ability to query fast-flowing data without having to wait until the data is ingested into a data warehouse, but at the same time without affecting the OLTP system's performance.
 
-In this lab you will build the solution architecture as shown below. You will simulate and insert the transactions from an ecommerce system to Cosmos DB. Push every change in near real-time to ADX using Azure functions triggered by Cosmos DB change feed and event hub. Idea is to use Cosmos DB as an opeartional hot store, ADX as an analytical warm store and Azure storage as a cold store.
+In this lab you will build the solution architecture as shown below. You will simulate and insert the transactions from an ecommerce system to Cosmos DB. Push every change in near real-time using Azure functions triggered by the Cosmos DB change feed which will further ingest the data to ADX via event hub. Idea is to use Cosmos DB as an opeartional hot store, ADX as an analytical warm store and Azure storage as a cold store.
 ![](images/RefArch.png)
 
 ## Key advantages of this architecture
@@ -19,7 +19,7 @@ In this lab you will build the solution architecture as shown below. You will si
 
 ## Brief on each of the components in this lab -
 1. **Data Generation component** - This will simulate random data for the lab. Its a simple .NET program to generate sample data simulating ecommerce website's shopping events including viewing of items, adding items to a shopping cart, purchase items. 
- 2. **Cosmos DB** - It is an operational and transactional system which will store simulated data in a Cosmos DB collection.
+ 2. **Cosmos DB** - It is a globally distributed, multi-model NoSQL database. I am leveraging its power to serve as an operational and transactional database in this lab which will store simulated data in a Cosmos DB collection.
  3. **Change Feed** - The change feed will listen for changes to the Cosmos DB collection e.g. on an ecommerce website, whenever user views an item, adds an item to their cart or purchases an item, it will lead to a change in Cosmos DB collection which will trigger an Azure Function.
 Change Feed is similar to database logs in relational world. It can be processed in push or pull model. I will be covering push model as its the recommended approach due to its ability to -
     - Poll the change feed for future changes
