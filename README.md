@@ -3,10 +3,10 @@
 **In this hands on lab you will learn about the power of near real-time analytical solution and how easy it is to build one using Azure Cosmos DB and Azure Data Explorer(ADX).**
 
 ## NOTE
-Analytical solutions can be built in mutiple ways using different azure services, this lab describes one of the possible scenarios. Similar outcomes can be achieved using other azure services which are not covered in this lab.
+Near real-time analytical solutions can be built in mutiple ways using different azure services, this lab describes one of the possible scenarios. Similar outcomes can be achieved using other azure services which are not covered in this lab.
 
 ## Overview
-The idea behind near real-time analytical solution is to provide the ability to analyze data without impacting the OLTP system. To understand its value proposition for business growth, let us take few examples - ability to provide promotions in ecommerce system as soon as user checks out, identify customer behaviour trends, fraudulent activities, monitoring in manufacturing industry to prevent negative consequences etc are all such scenarios which are possible with this solution.<br>
+The idea behind near real-time analytical solution is to provide the ability to analyze data without impacting the OLTP system. Few examples to understand its value proposition for business growth include - ability to provide promotions in ecommerce system as soon as user checks out, identify customer behaviour trends, fraudulent activities, monitoring data from IoT devices in manufacturing industry for predictive maintenance or to prevent negative consequences etc are all such scenarios which are possible with this solution.<br>
 With ADX, you get the ability to query fast-flowing data without having to wait until the data is ingested into a data warehouse, but at the same time without affecting the OLTP system's performance.
 
 In this lab you will build the solution architecture as shown below. You will simulate and insert the transactions from an ecommerce system to Cosmos DB. Push every change in near real-time using Azure functions triggered by the Cosmos DB change feed which will further ingest the data to ADX via event hub. Idea is to use Cosmos DB as an opeartional hot store, ADX as an analytical warm store and Azure storage as a cold store.
